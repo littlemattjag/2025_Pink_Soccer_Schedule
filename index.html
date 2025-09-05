@@ -315,6 +315,31 @@ END:VCALENDAR`;
             e.preventDefault();
             downloadCalendar();
         });
+
+        // Function to mark past events
+        function markPastEvents() {
+            const now = new Date();
+            const events = document.querySelectorAll('.event[data-date]');
+            
+            events.forEach(event => {
+                const eventDate = event.getAttribute('data-date');
+                const eventTime = event.getAttribute('data-time');
+                
+                // Create event datetime
+                const [year, month, day] = eventDate.split('-').map(num => parseInt(num));
+                const [hour, minute] = eventTime.split(':').map(num => parseInt(num));
+                
+                const eventDateTime = new Date(year, month - 1, day, hour, minute);
+                
+                // If event has passed, mark it
+                if (eventDateTime < now) {
+                    event.classList.add('past');
+                }
+            });
+        }
+
+        // Mark past events when page loads
+        document.addEventListener('DOMContentLoaded', markPastEvents);
     </script>
 </body>
 </html>
