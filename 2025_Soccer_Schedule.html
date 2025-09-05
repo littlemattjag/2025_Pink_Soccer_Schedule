@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridesburg Cougars Soccer Schedule</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .download-btn {
+            background: #007AFF;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,122,255,0.3);
+            transition: all 0.3s ease;
+        }
+        .download-btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,122,255,0.4);
+        }
+        .events-list {
+            text-align: left;
+            margin-top: 20px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .event {
+            margin-bottom: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .event:last-child {
+            border-bottom: none;
+        }
+        .event-date {
+            font-weight: 600;
+            color: #007AFF;
+        }
+        .event-title {
+            color: #333;
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚽ Bridesburg Cougars Soccer</h1>
+        <p>2025 Neon Pink Team Schedule</p>
+        
+        <a href="#" class="download-btn" onclick="downloadCalendar()">📅 Add to My Calendar</a>
+        
+        <div class="instructions">
+            <strong>iOS/iPhone:</strong> Tap the button above, then tap "Add All" to import all events to your calendar.<br>
+            <strong>Android:</strong> The events will be downloaded as a file you can import.
+        </div>
+        
+        <div class="events-list">
+            <div class="event">
+                <div class="event-date">Sept 7, 11:00 AM</div>
+                <div class="event-title">Soccer Practice and Meet and Greet</div>
+            </div>
+            <div class="event">
+                <div class="event-date">Sept 14, 10:00 AM</div>
+                <div class="event-title">Soccer Practice</div>
+            </div>
+            <div class="event">
+                <div class="event-date">Sept 21, 10:00 AM</div>
+                <div class="event-title">Soccer Blue</div>
+            </div>
+            <div class="event">
+                <div class="event-date">Sept 28, 9:00 AM</div>
+                <div class="event-title">Soccer Coral</div>
+            </div>
+            <div class="event">
+                <div class="event-date">Oct 5, 10:00 AM</div>
+                <div class="event-title">Soccer Practice</div>
+            </div>
+            <div class="event">
+                <div class="event-date">Oct 12, 10:00 AM</div>
+                <div class="event-title">Soccer Coral</div>
+            </div>
+            <div class="event">
+                <div class="event-date">Oct 19, 9:00 AM</div>
+                <div class="event-title">Soccer Green</div>
+            </div>
+            <div class="event">
+                <div class="event-date">Oct 26, 10:00 AM</div>
+                <div class="event-title">Soccer Blue (Halloween Game)</div>
+            </div>
+            <div class="event">
+                <div class="event-date">Nov 2, 11:00 AM</div>
+                <div class="event-title">Soccer Yellow</div>
+            </div>
+            <div class="event">
+                <div class="event-date">Nov 9, 10:00 AM</div>
+                <div class="event-title">Soccer Green</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadCalendar() {
+            const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Bridesburg Cougars Soccer//EN
+CALSCALE:GREGORIAN
+
+BEGIN:VEVENT
+SUMMARY:Soccer Practice and Meet and Greet
+DTSTART:20250907T110000
+DTEND:20250907T120000
+DESCRIPTION:
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Soccer Practice
+DTSTART:20250914T100000
+DTEND:20250914T110000
+DESCRIPTION:
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Soccer Blue
+DTSTART:20250921T100000
+DTEND:20250921T110000
+DESCRIPTION:
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Soccer Coral
+DTSTART:20250928T090000
+DTEND:20250928T100000
+DESCRIPTION:
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Soccer
+DTSTART:20251005T100000
+DTEND:20251005T110000
+DESCRIPTION:
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Soccer Practice
+DTSTART:20251005T100000
+DTEND:20251005T110000
+DESCRIPTION:
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Soccer Coral
+DTSTART:20251012T100000
+DTEND:20251012T110000
+DESCRIPTION:
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Soccer Green
+DTSTART:20251019T090000
+DTEND:20251019T100000
+DESCRIPTION:
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Soccer Blue
+DTSTART:20251026T100000
+DTEND:20251026T110000
+DESCRIPTION:Halloween Game
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Soccer Yellow
+DTSTART:20251102T110000
+DTEND:20251102T120000
+DESCRIPTION:
+END:VEVENT
+
+BEGIN:VEVENT
+SUMMARY:Soccer Green
+DTSTART:20251109T100000
+DTEND:20251109T110000
+DESCRIPTION:
+END:VEVENT
+
+END:VCALENDAR`;
+
+            // Create blob and download
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = '2025_Neon_Pink_Soccer.ics';
+            link.click();
+        }
+    </script>
+</body>
+</html>
