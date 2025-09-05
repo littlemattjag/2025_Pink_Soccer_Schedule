@@ -78,6 +78,37 @@
             font-size: 14px;
             color: #1976d2;
         }
+        .backup-text {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #856404;
+            display: none;
+        }
+        .copy-btn {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 15px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        .ics-content {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 10px;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+            text-align: left;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -85,11 +116,21 @@
         <h1>⚽ Bridesburg Cougars Soccer</h1>
         <p>2025 Neon Pink Team Schedule</p>
         
-        <a href="#" class="download-btn" onclick="downloadCalendar()">📅 Add to My Calendar</a>
+        <a id="downloadBtn" class="download-btn">📅 Add to My Calendar</a>
         
         <div class="instructions">
             <strong>iOS/iPhone:</strong> Tap the button above, then tap "Add All" to import all events to your calendar.<br>
             <strong>Android:</strong> The events will be downloaded as a file you can import.
+        </div>
+
+        <div id="backupInstructions" class="backup-text">
+            <strong>If the download didn't work:</strong><br>
+            1. Copy the calendar data below<br>
+            2. Paste it into a text file<br>
+            3. Save with .ics extension<br>
+            4. Import into your calendar app<br>
+            <button class="copy-btn" onclick="copyToClipboard()">Copy Calendar Data</button>
+            <div id="icsContent" class="ics-content"></div>
         </div>
         
         <div class="events-list">
@@ -137,8 +178,7 @@
     </div>
 
     <script>
-        function downloadCalendar() {
-            const icsContent = `BEGIN:VCALENDAR
+        const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//Bridesburg Cougars Soccer//EN
 CALSCALE:GREGORIAN
@@ -222,13 +262,59 @@ END:VEVENT
 
 END:VCALENDAR`;
 
-            // Create blob and download
-            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
-            const link = document.createElement('a');
-            link.href = window.URL.createObjectURL(blob);
-            link.download = '2025_Neon_Pink_Soccer.ics';
-            link.click();
+        function downloadCalendar() {
+            try {
+                // Try the blob method first
+                const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+                const link = document.createElement('a');
+                
+                // Check if the browser supports URL.createObjectURL
+                if (window.URL && window.URL.createObjectURL) {
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = '2025_Neon_Pink_Soccer.ics';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    // Clean up
+                    setTimeout(() => {
+                        window.URL.revokeObjectURL(link.href);
+                    }, 100);
+                } else {
+                    throw new Error('Blob download not supported');
+                }
+            } catch (error) {
+                console.log('Blob download failed, showing backup method');
+                showBackupMethod();
+            }
         }
+
+        function showBackupMethod() {
+            document.getElementById('backupInstructions').style.display = 'block';
+            document.getElementById('icsContent').textContent = icsContent;
+            document.getElementById('icsContent').style.display = 'block';
+        }
+
+        function copyToClipboard() {
+            navigator.clipboard.writeText(icsContent).then(() => {
+                alert('Calendar data copied to clipboard! Paste it into a text file and save with .ics extension.');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = icsContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Calendar data copied to clipboard! Paste it into a text file and save with .ics extension.');
+            });
+        }
+
+        // Set up the download button
+        document.getElementById('downloadBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            downloadCalendar();
+        });
     </script>
 </body>
 </html>
